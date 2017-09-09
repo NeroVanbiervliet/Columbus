@@ -78,6 +78,14 @@ class DataItem(object):
 	def mean(self):
 		return np.mean(self.data)
 	
+	# returns the percentage of samples smaller then a reference value
+	def percentageSmallerThan(self, value):
+		return int(float((self.data < value).sum())/len(self.data)*100)
+
+	def percentageLargerThan(self, value):
+		return int(float((self.data > value).sum())/len(self.data)*100)
+		
+
 	# AUXILIARY FUNCTIONS
 	
 	def reduce(self, dataArray, finesse):
