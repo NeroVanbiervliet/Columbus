@@ -90,6 +90,7 @@ class DataItem(object):
 	
 	def reduce(self, dataArray, finesse):
 		if len(dataArray) > finesse:
+			np.random.seed(0) # make choice pseudorandom
 			return np.random.choice(dataArray, finesse)
 		return dataArray
 
