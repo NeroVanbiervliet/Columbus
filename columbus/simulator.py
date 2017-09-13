@@ -2,6 +2,8 @@ from .map import Map
 import time
 import matplotlib
 import matplotlib.pyplot as plt
+import resource
+import sys
 
 # standard deviation map
 STD = Map()
@@ -22,16 +24,22 @@ SKEWNESS.MEDIUM = 0.5
 SKEWNESS.LARGE = 1
 
 class Simulator:
-	def __init__(self, finesse):
+	def __init__(self, finesse, maxMemory):
 		self.finesse = finesse
 		self.numOps = 0
 		self.pltCounter = 1
+		self.maxMemory = maxMemory
 
 		# set matplotlib color cycle to something prettier
 		matplotlib.rcParams['axes.color_cycle'] = ['#ffaaa5','#a8e6cf','#dcedc1','#ff8b94','#ffd3b6']
 	
 	def addOps(self,num):
 		self.numOps += num
+
+		# check memory usage
+		if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss > self.maxMemory:
+			print('maximum memory usage exceeded, lower finesse')
+			sys.exit()
 
 	# start timer
 	def start(self):
