@@ -1,4 +1,4 @@
-from dataitem import DataItem
+from .dataitem import DataItem
 import numpy as np
 import math
 

@@ -1,4 +1,4 @@
-from map import Map
+from .map import Map
 import time
 import matplotlib
 import matplotlib.pyplot as plt
@@ -53,7 +53,7 @@ class Simulator:
 		else:
 			numOpsStr = str(self.numOps)
 
-		print 'performed %s operations in %d seconds' % (numOpsStr,elapsedTime)
+		print('performed %s operations in %d seconds' % (numOpsStr,elapsedTime))
 		
 		# show plots
 		plt.show()
