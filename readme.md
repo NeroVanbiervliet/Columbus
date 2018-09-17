@@ -24,13 +24,13 @@ iceCreamsSoldPerHour = chancePassengerBuysIceCream.mul(numberOfPassingPeoplePerH
 # only keep samples that are > 0
 iceCreamsSoldPerHourPositive = iceCreamsSoldPerHour.floor(0)
 iceCreamsSoldTotal = iceCreamsSoldPerHourPositive.mul(numberOfHoursSelling)
-``` 
+```
 
-Other operations such as adding and subtracting are also possible. You can read more about the operations [below](#Operations). The only thing left to explain is the **sim** variable used above. It is used to set the simulation level of detail and can be used to plot variables.
+Other operations such as adding and subtracting are also possible. You can read more about the operations [below](#operations). The only thing left to explain is the **sim** variable used above. It is used to set the simulation level of detail and can be used to plot variables.
 
 ```python
 # start of simulation
-sim = Simulator(int(1e4)) # simulator parameter specifies how fine grained the simulation will be, 1e4 is a reasonable value
+sim = Simulator(int(1e4), 2e6) # simulator parameter specifies how fine grained the simulation will be, 1e4 is a reasonable value. 2e6 is the max memory consumption in [kb]
 sim.start()
 
 # intermediate calculations...
@@ -113,7 +113,9 @@ DataItems can also be modified to remove all samples above or below a certain va
 * `.floor(value)` removes all values below `value`
 * `.ceil(value)` removes all values above `value`
 
-All operations have no effect on the dataItem they were performed on, they **return the result**. 
+DataItems can also be inverted (`invert()`) or rounded to the nearest int (`toInt()`).
+
+**Note:** All operations have no effect on the dataItem they were performed on, they **return the result**. 
 
 ## Plotting
 
@@ -125,3 +127,12 @@ with
 * `vars` either one variable or a list of variables
 * `title` *optional* the title of the plot
 * `labels` *optional* either one string or a list of strings 
+
+## Calculating key figures
+
+Columbus offers multiple descriptive statistics
+
+* `mean()`
+* `median()`
+* `percentageSmallerThan(value)`
+* `percentageLargerThan(value)`

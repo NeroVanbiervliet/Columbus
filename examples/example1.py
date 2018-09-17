@@ -3,7 +3,7 @@ from columbus.simulator import FINESSE,STD,SKEWNESS,Simulator
 from columbus.datatypes import Scalar, Normal, Skewed
 
 # initiate simulator 
-sim = Simulator(int(1e4),2e6) # simulator parameter specifies how fine grained the simulation will be, 1e4 is a reasonable value
+sim = Simulator(int(1e4), 2e6) # simulator parameter specifies how fine grained the simulation will be, 1e4 is a reasonable value. 2e6 is the max memory consumption in [kb]
 sim.start()
 
 # usage of a normal distribution
