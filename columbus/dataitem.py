@@ -77,6 +77,9 @@ class DataItem(object):
 
 	def mean(self):
 		return np.mean(self.data)
+
+	def median(self):
+		return np.median(self.data)
 	
 	# returns the percentage of samples smaller then a reference value
 	def percentageSmallerThan(self, value):
