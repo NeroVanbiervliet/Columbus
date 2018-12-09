@@ -4,23 +4,17 @@ import math
 
 class DataItem(object):
 	
-	# constructor
 	# dataArray is reduced in size if too large
 	def __init__(self, simulator, dataArray):
 		self.sim = simulator
-		self.data = self.reduce(np.array(dataArray),self.sim.finesse)
+		self.data = self.reduce(np.array(dataArray), self.sim.finesse)
 
-	# get data array
 	def getData(self):
 		return self.data
 
 	# adds an other data item to this data item and returns the result in a new data item
 	def add(self, otherDataItem):
-		otherData = otherDataItem.getData()
-		selfData = self.data
-		if len(otherData)*len(selfData) > self.sim.finesse:
-			otherData = self.root(otherData)
-			selfData = self.root(selfData)
+		selfData, otherData = self.reduceDataPoints(otherDataItem)
 		self.sim.addOps(len(selfData)*len(otherData)) # log operations
 		outputData = []
 		for i in range(len(otherData)):
@@ -34,29 +28,21 @@ class DataItem(object):
 
 	# multiplies an other data item with this data item and returns the result in a new data item
 	def mul(self, otherDataItem):
-		otherData = otherDataItem.getData()
-		selfData = self.data
-		if len(otherData)*len(selfData) > self.sim.finesse:
-			otherData = self.root(otherData)
-			selfData = self.root(selfData)
+		selfData, otherData = self.reduceDataPoints(otherDataItem)
 		self.sim.addOps(len(selfData)*len(otherData)) # log operations
 		outputData = []
 		for i in range(len(otherData)):
-			outputData.extend(np.multiply(self.data,otherData[i]))
+			outputData.extend(np.multiply(selfData, otherData[i]))
 
 		return DataItem(self.sim, outputData)
 	
 	# divided this data item by an other data item and returns the result in a new data item
 	def div(self, otherDataItem):
-		otherData = otherDataItem.getData().astype(float)
-		selfData = self.data
-		if len(otherData)*len(selfData) > self.sim.finesse:
-			otherData = self.root(otherData)
-			selfData = self.root(selfData)
+		selfData, otherData = self.reduceDataPoints(otherDataItem)
 		self.sim.addOps(len(selfData)*len(otherData)) # log operations
 		outputData = []
 		for i in range(len(otherData)):
-			outputData.extend(np.divide(self.data,otherData[i]))
+			outputData.extend(np.divide(selfData, otherData[i]))
 
 		return DataItem(self.sim, outputData)
 
@@ -90,16 +76,22 @@ class DataItem(object):
 		
 
 	# AUXILIARY FUNCTIONS
-	
+
+	def reduceDataPoints(self, otherDataItem):
+		selfData = self.data
+		otherData = otherDataItem.getData().astype(float)
+		if len(otherData)*len(selfData) > self.sim.finesse:
+			otherData = self.reduceByRoot(otherData)
+			selfData = self.reduceByRoot(self.data)
+		return selfData, otherData
+
 	def reduce(self, dataArray, finesse):
 		if len(dataArray) > finesse:
 			np.random.seed(0) # make choice pseudorandom
 			return np.random.choice(dataArray, finesse)
 		return dataArray
 
-	def root(self, dataArray):
+	def reduceByRoot(self, dataArray):
 		if len(dataArray) > 1:
 			return self.reduce(dataArray, int(math.sqrt(len(dataArray))))
 		return dataArray
-
-	

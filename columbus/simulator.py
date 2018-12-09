@@ -69,7 +69,7 @@ class Simulator:
 		plt.show()
 
 	# @param2 (optional): title string
-	def plot(self,varsToPlot,*args):
+	def plot(self, varsToPlot, *args):
 		
 		# create plot
 		plt.figure(self.pltCounter)

@@ -4,23 +4,17 @@ import math
 
 # normal distribution
 class Normal(DataItem):
-	
-	# constructor
 	def __init__(self, simulator, mu, sigma):
 		np.random.seed(0)
 		super(Normal, self).__init__(simulator, np.random.normal(mu, sigma, simulator.finesse))
 
 # scalar number
 class Scalar(DataItem):
-	
-	# constructor
 	def __init__(self, simulator, scalar):
 		super(Scalar, self).__init__(simulator,[scalar])
 
 # skewed log normal distribution
 class Skewed(DataItem):
-	
-	# constructor
 	def __init__(self, simulator, median, skewness, tailDirection):
 		if tailDirection not in ['right','left']:
 			raise ValueError("tail direction must be either left or right")
@@ -38,8 +32,6 @@ class Skewed(DataItem):
 
 # uniform distribution
 class Uniform(DataItem):
-	
-	# constructor
 	def __init__(self, simulator, lo, hi):
 		np.random.seed(0)
 		super(Uniform, self).__init__(simulator, np.random.uniform(lo, hi, simulator.finesse))
