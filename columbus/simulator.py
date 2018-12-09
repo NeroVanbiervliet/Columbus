@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import resource
 import sys
 
+CUSTOM_COLORS = ['#ffaaa5','#a8e6cf','#dcedc1','#ff8b94','#ffd3b6'] 
+
 # standard deviation map
 STD = Map()
 STD.SMALL = 1
@@ -31,7 +33,7 @@ class Simulator:
 		self.maxMemory = maxMemory
 
 		# set matplotlib color cycle to something prettier
-		matplotlib.rcParams['axes.color_cycle'] = ['#ffaaa5','#a8e6cf','#dcedc1','#ff8b94','#ffd3b6']
+		plt.gca().set_prop_cycle(color=CUSTOM_COLORS)
 	
 	def addOps(self,num):
 		self.numOps += num
