@@ -1,4 +1,4 @@
-<img style="width:100%;" src="/github-banner.png">
+<img style="width:100%;" src="./github-banner.png">
 
 # Columbus
 
@@ -45,7 +45,6 @@ sim.report() # prints the number of calculations performed and the elapsed time
 The plot looks like this:
 
 <div style="text-align:center"><img style="width:100%;" src="/plot-demo.png"></div>
-
 Check out the complete script for example 1 [here](/examples). You can also find more examples there. 
 
 ## Contents
