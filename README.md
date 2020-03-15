@@ -2,9 +2,9 @@
 
 # Columbus
 
-Columbus is a python package to simulate a series of uncertain events, such as a company's business plan. 
+Columbus is a python package to simulate a series of uncertain events, such as a company's business plan.
 
-Let's take a look at the following code snippets from [example 1](/examples). Suppose you want to estimate the number of ice creams you will sell on a certain day to people passing by. You can create variables using datatypes representing **Normal** and **Skewed** distributions, as well as **Scalar** numbers. Don't mind the *sim* for now. 
+Let's take a look at the following code snippets from [example 1](/examples). Suppose you want to estimate the number of ice creams you will sell on a certain day to people passing by. You can create variables using datatypes representing **Normal** and **Skewed** distributions, as well as **Scalar** numbers. Don't mind the *sim* for now.
 
 ```python
 # usage of a normal distribution
@@ -44,8 +44,9 @@ sim.report() # prints the number of calculations performed and the elapsed time
 ```
 The plot looks like this:
 
-<div style="text-align:center"><img style="width:100%;" src="/plot-demo.png"></div>
-Check out the complete script for example 1 [here](/examples). You can also find more examples there. 
+<div style="text-align:center"><img style="width:100%;" src="./plot-demo.png"></div>
+
+Check out the complete script for example 1 [here](./examples). You can also find more examples there.
 
 ## Contents
 
@@ -56,18 +57,18 @@ Check out the complete script for example 1 [here](/examples). You can also find
 
 ## Installation, Dependencies and Usage
 
-To install Columbus, download the source and run the python installation script. For unix systems: 
+To install Columbus, download the source and run the python installation script. For unix systems:
 
 ```bash
 sudo python setup.py install
 
 ```
-Once this is done, it can be used in any script on your system. Columbus needs the following preinstalled modules to function properly: 
+Once this is done, it can be used in any script on your system. Columbus needs the following preinstalled modules to function properly:
 * matplotlib
 * numpy
 
-To use the Columbus library in a script, use the following imports: 
-```python 
+To use the Columbus library in a script, use the following imports:
+```python
 
 from columbus.simulator import FINESSE,STD,SKEWNESS,Simulator
 from columbus.datatypes import Scalar, Normal, Skewed
@@ -90,8 +91,8 @@ Simulates a normal distribution. Initialisation:
 ### Skewed distribution
 
 Simulates a skewed distribution. Initialisation:
-`Skewed(simulatorObject, mean, skewness, tailDirection)`. 
-For the `skewness` parameter, predefined values from the `SKEWNESS` object can be used: `SKEWNESS.SMALL, SKEWNESS.MEDIUM or SKEWNESS.LARGE`. `tailDirection' is a string equal to *left* or *right*, indicating if the tail is to the left or to the right of the mean. 
+`Skewed(simulatorObject, mean, skewness, tailDirection)`.
+For the `skewness` parameter, predefined values from the `SKEWNESS` object can be used: `SKEWNESS.SMALL, SKEWNESS.MEDIUM or SKEWNESS.LARGE`. `tailDirection' is a string equal to *left* or *right*, indicating if the tail is to the left or to the right of the mean.
 
 ### Uniform
 
@@ -100,21 +101,21 @@ Implementation of a uniform distribution. Initialisation:
 
 ## Operations
 
-Data items supports the following basic arithmatic operations: 
+Data items supports the following basic arithmetic operations:
 
 * `.add(dataItem)`
 * `.sub(dataItem)`
 * `.mul(dataItem)`
 * `.div(dataItem)`
 
-DataItems can also be modified to remove all samples above or below a certain value: 
+DataItems can also be modified to remove all samples above or below a certain value:
 
 * `.floor(value)` removes all values below `value`
 * `.ceil(value)` removes all values above `value`
 
 DataItems can also be inverted (`invert()`) or rounded to the nearest int (`toInt()`).
 
-**Note:** All operations have no effect on the dataItem they were performed on, they **return the result**. 
+**Note:** All operations have no effect on the dataItem they were performed on, they **return the result** (the functions are pure).
 
 ## Plotting
 
@@ -122,10 +123,10 @@ Columbus can plot all above mentioned data types. The syntax is as following:
 ```python
 sim.plot(vars,title,labels)
 ```
-with 
+with
 * `vars` either one variable or a list of variables
 * `title` *optional* the title of the plot
-* `labels` *optional* either one string or a list of strings 
+* `labels` *optional* either one string or a list of strings
 
 ## Calculating key figures
 
